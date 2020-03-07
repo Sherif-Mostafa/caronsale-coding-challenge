@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendApiBaseUrl: 'https://caronsale-backend-service-dev.herokuapp.com/api/v1'
+  backendApiBaseUrl: 'https://caronsale-backend-service-dev.herokuapp.com/api/v1/'
 };
 
 /*
