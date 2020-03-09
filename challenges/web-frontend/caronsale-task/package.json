@@ -19,8 +19,10 @@
     "@angular/platform-browser": "~9.1.0-next.2",
     "@angular/platform-browser-dynamic": "~9.1.0-next.2",
     "@angular/router": "~9.1.0-next.2",
+    "bootstrap": "^4.4.1",
     "js-sha512": "^0.8.0",
     "jsonpath": "^1.0.2",
+    "moment": "^2.24.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

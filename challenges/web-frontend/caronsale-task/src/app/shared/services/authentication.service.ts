@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { UtilsService } from './utils.service';
 import { User } from '../models/user.model';
 import * as JsonQuery from 'jsonpath';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +20,13 @@ export class AuthenticationService {
     this.currentUser = new User();
   }
 
-  Login(mail: string, password: string) {
+  Login(mail: string, password: string): Observable<any> {
     const url = API_URLS.AUTHENTICATION.LOGIN.replace('{userMailId}', mail);
     const body = {};
     body[LOGIN.PASSWORD] = this.utils.hashPasswordWithCycles(password);
     body[LOGIN.META] = btoa(password);
 
-    this.http.put(url, body).pipe(map(response => {
+    return this.http.put(url, body).pipe(map(response => {
       this.currentUser.JWT = JsonQuery.value(response, JSON_PATHS.USER.JWT) || null;
       this.currentUser.IsAuthenticated = JsonQuery.value(response, JSON_PATHS.USER.IsAuthenticated) || false;
       this.currentUser.UserId = JsonQuery.value(response, JSON_PATHS.USER.UserId) || null;
@@ -35,8 +36,8 @@ export class AuthenticationService {
       if (privileges) {
         this.currentUser.Privileges = privileges.split('~');
       }
-    }), catchError(err => {
-      return err;
-    }));
+      return response;
+    })
+    );
   }
 }

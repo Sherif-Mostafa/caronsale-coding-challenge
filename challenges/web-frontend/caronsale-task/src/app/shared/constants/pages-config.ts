@@ -1,12 +1,10 @@
-export let config = {
+export let CONFIG = {
     LOGIN: {
         'name': 'login',
-        'route': '/login',
-        'loadChildren': '../app/login/login.module#LoginModule'
+        'route': '/login'
     },
     OVERVIEW: {
         'name': 'overview',
-        'route': '/overview',
-        'loadChildren': '../app/overview/overview.module#OverviewModule'
+        'route': '/overview'
     },
 }
